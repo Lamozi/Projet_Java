@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/Bibliotheque/src/main/java/esgi/b3/DataBaseMaintenace.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Bibliotheque/src/main/java/esgi/b3/Main.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Bibliotheque/src/main/java/esgi/b3/dao/EmpruntDAO.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Bibliotheque/src/main/java/esgi/b3/dao/LivreDAO.java" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/Bibliotheque/src/main/java/esgi/b3/dao/UserDAO.java" dialect="SQLite" />
+    <file url="PROJECT" dialect="SQLite" />
+  </component>
+</project>
