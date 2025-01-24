@@ -1,7 +1,10 @@
 package esgi.b3.dao;
 import esgi.b3.DatabaseManager;
+import esgi.b3.models.Livre;
+import esgi.b3.models.LivreEmprunt;
 import esgi.b3.models.User;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +102,25 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Vérifier si l'utilisateur existe par son email
+     * @param email email de l'utilisateur
+     * @return true si l'utilisateur existe, sinon false
+     */
+    public boolean existsByEmail(String email) {
+        try {
+            String query = "SELECT * FROM users WHERE email = ?";
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, email);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Supprimer un utilisateur
@@ -139,4 +161,58 @@ public class UserDAO {
         }
         return null;
     }
+
+    /**
+     * Modifier un utilisateur
+     * @param user utilisateur
+     * @param newNom nouveau nom
+     * @param newEmail nouveau email
+     */
+    public void updateUser(User user, String newNom, String newEmail) {
+        String query = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, newNom);
+            preparedStatement.setString(2, newEmail);
+            preparedStatement.setInt(3, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Récupérer l'utilisateur par son id
+     * @param id_user id de l'utilisateur
+     * @return utilisateur
+     */
+    public List<LivreEmprunt> historiqueEmprunts(int id_user) {
+        String query = "SELECT l.id, l.titre, e.date_emprunt, e.date_retour " +
+                "FROM emprunts e " +
+                "JOIN livres l ON e.id_livre = l.id WHERE e.id_user = ?";
+        List<LivreEmprunt> emprunts = new ArrayList<>();
+
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id_user);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int idLivre = resultSet.getInt("id");
+                    String titre = resultSet.getString("titre");
+                    LocalDate dateEmprunt = resultSet.getDate("date_emprunt").toLocalDate();
+                    LocalDate dateRetour = resultSet.getDate("date_retour") != null
+                            ? resultSet.getDate("date_retour").toLocalDate()
+                            : null;
+
+                    emprunts.add(new LivreEmprunt(idLivre, titre, dateEmprunt, dateRetour));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return emprunts;
+    }
+
 }

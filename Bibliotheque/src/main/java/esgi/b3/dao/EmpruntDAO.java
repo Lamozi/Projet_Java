@@ -37,7 +37,7 @@ public class EmpruntDAO {
      * @param emprunt emprunt
      */
     public void addEmprunt(Emprunt emprunt) throws SQLException {
-        String query = "INSERT INTO emprunts (id_livre, id_user, date_emprunt, date_retour) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO emprunts (id_user, id_livre, date_emprunt, date_retour) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, emprunt.getLivreId());

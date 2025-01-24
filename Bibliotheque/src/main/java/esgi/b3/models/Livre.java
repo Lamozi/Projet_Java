@@ -1,5 +1,7 @@
 package esgi.b3.models;
 
+import java.time.LocalDate;
+
 public class Livre {
     private int id;
     private String titre;

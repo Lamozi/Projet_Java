@@ -1,6 +1,8 @@
 package esgi.b3.services;
 
 import esgi.b3.dao.UserDAO;
+import esgi.b3.models.Livre;
+import esgi.b3.models.LivreEmprunt;
 import esgi.b3.models.User;
 
 import java.sql.SQLException;
@@ -26,6 +28,10 @@ public class UserService {
         if (name == null || name.isEmpty() || email == null || email.isEmpty()) {
             throw new IllegalArgumentException("Nom et email sont obligatoires.");
         }
+        // vérifier si l'utilisateur existe déjà
+        if (userDAO.existsByName(name) || userDAO.existsByEmail(email)) {
+            throw new IllegalArgumentException("L'utilisateur existe déjà.");
+        }
         userDAO.addUser(new User(0, name, email));
     }
 
@@ -45,4 +51,19 @@ public class UserService {
     public User getUserByName(String nom) {
         return userDAO.getUserByName(nom);
     }
+
+    /**
+     * Modifier un utilisateur
+     * @param user utilisateur
+     * @param newNom nouveau nom
+     * @param newEmail nouveau email
+     */
+    public void updateUser(User user, String newNom, String newEmail) {
+        userDAO.updateUser(user, newNom, newEmail);
+    }
+
+    public List<LivreEmprunt> historiqueEmprunts(int id_user) throws SQLException {
+        return userDAO.historiqueEmprunts(id_user);
+    }
+
 }

@@ -48,11 +48,30 @@ public class LivreDAO {
     }
 
     /**
+     * Modifier un livre
+     * @param livre livre
+     */
+    public void updateLivre(Livre livre) throws SQLException {
+        String query = "UPDATE livres SET titre = ?, auteur = ?, genre = ?, status = ? WHERE id = ?";
+        try (Connection connection = DatabaseManager.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, livre.getTitre());
+            preparedStatement.setString(2, livre.getAuteur());
+            preparedStatement.setString(3, livre.getGenre());
+            preparedStatement.setString(4, livre.getStatus().toString());
+            preparedStatement.setInt(5, livre.getId());
+            preparedStatement.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Récupérer l'id du livre par son titre
      * @param titre titre du livre
      * @return id du livre
      */
-    public int getIdLivreId(String titre) throws SQLException {
+    public int getLivreId(String titre) throws SQLException {
         String query = "SELECT id FROM livres WHERE titre = ?";
         try (Connection connection = DatabaseManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -177,6 +196,35 @@ public class LivreDAO {
     }
 
     /**
+     * Récupérer la liste des livres empruntés
+     * @return liste des livres empruntés
+     */
+    public List<Livre> getAllLivresEmprunte() {
+        try {
+            String query = "SELECT * FROM livres WHERE status = 'emprunte'";
+            List<Livre> livres = new ArrayList<>();
+            try (Connection connection = DatabaseManager.getConnection();
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+
+                while (resultSet.next()) {
+                    livres.add(new Livre(
+                            resultSet.getInt("id"),
+                            resultSet.getString("titre"),
+                            resultSet.getString("auteur"),
+                            resultSet.getString("genre"),
+                            resultSet.getString("status")
+                    ));
+                }
+            }
+            return livres;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * Vérifier si un livre est disponible
      * @param livre livre
      * @return true si le livre est disponible, sinon false
@@ -192,6 +240,135 @@ public class LivreDAO {
                 }
             }
         }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * Récupérer le livre par son titre
+     * @param titre titre du livre
+     * @return livre
+     */
+    public Livre getLivreByTitre(String titre) {
+        try {
+            String query = "SELECT * FROM livres WHERE titre = ?";
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, titre);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return new Livre(
+                                resultSet.getInt("id"),
+                                resultSet.getString("titre"),
+                                resultSet.getString("auteur"),
+                                resultSet.getString("genre"),
+                                resultSet.getString("status")
+                        );
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Supprimer un livre
+     * @param id id du livre
+     */
+    public void deleteLivre(int id) {
+        try {
+            String query = "DELETE FROM livres WHERE id = ?";
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Récupérer la liste des livres par auteur
+     * @param auteur auteur du livre
+     * @return liste des livres
+     */
+    public List<Livre> getLivreByAuteur(String auteur) {
+        try {
+            String query = "SELECT * FROM livres WHERE auteur = ?";
+            List<Livre> livres = new ArrayList<>();
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, auteur);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        livres.add(new Livre(
+                                resultSet.getInt("id"),
+                                resultSet.getString("titre"),
+                                resultSet.getString("auteur"),
+                                resultSet.getString("genre"),
+                                resultSet.getString("status")
+                        ));
+                    }
+                }
+            }
+            return livres;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Récupérer la liste des livres par genre
+     * @param genre genre du livre
+     * @return liste des livres
+     */
+    public List<Livre> getLivreByGenre(String genre) {
+        try {
+            String query = "SELECT * FROM livres WHERE genre = ?";
+            List<Livre> livres = new ArrayList<>();
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, genre);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        livres.add(new Livre(
+                                resultSet.getInt("id"),
+                                resultSet.getString("titre"),
+                                resultSet.getString("auteur"),
+                                resultSet.getString("genre"),
+                                resultSet.getString("status")
+                        ));
+                    }
+                }
+            }
+            return livres;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Vérifier si un livre existe par son titre
+     * @param titre titre du livre
+     * @return true si le livre existe, sinon false
+     */
+    public boolean existsByTitre(String titre) {
+        try {
+            String query = "SELECT * FROM livres WHERE titre = ?";
+            try (Connection connection = DatabaseManager.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, titre);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    return resultSet.next();
+                }
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

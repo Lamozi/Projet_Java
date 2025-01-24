@@ -1,0 +1,889 @@
+{
+  "users" : [ {
+    "id" : 1,
+    "nom" : "Alice",
+    "email" : "alice@example.com"
+  }, {
+    "id" : 2,
+    "nom" : "Boby",
+    "email" : "boby@gmail.com"
+  }, {
+    "id" : 5,
+    "nom" : "Bo",
+    "email" : "bo@example.com"
+  }, {
+    "id" : 6,
+    "nom" : "jonas",
+    "email" : "jonas@gmail.com"
+  }, {
+    "id" : 43,
+    "nom" : "Marie",
+    "email" : "marie@example.com"
+  }, {
+    "id" : 44,
+    "nom" : "David",
+    "email" : "david@gmail.com"
+  }, {
+    "id" : 45,
+    "nom" : "Sophie",
+    "email" : "sophie@hotmail.com"
+  }, {
+    "id" : 46,
+    "nom" : "Maxime",
+    "email" : "maxime@outlook.com"
+  } ],
+  "emprunts" : [ {
+    "id" : 7,
+    "user_id" : 2,
+    "livre_id" : 2,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 8,
+    "user_id" : 2,
+    "livre_id" : -1,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 9,
+    "user_id" : 2,
+    "livre_id" : -1,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 10,
+    "user_id" : 2,
+    "livre_id" : 2,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 11,
+    "user_id" : 2,
+    "livre_id" : 2,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 12,
+    "user_id" : 6,
+    "livre_id" : -1,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 13,
+    "user_id" : 2,
+    "livre_id" : 4,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 14,
+    "user_id" : 6,
+    "livre_id" : 25,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 15,
+    "user_id" : 2,
+    "livre_id" : 8,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 16,
+    "user_id" : 10,
+    "livre_id" : 2,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 17,
+    "user_id" : 2,
+    "livre_id" : 1,
+    "date_emprunt" : [ 2025, 1, 22 ],
+    "date_retour" : [ 2025, 2, 5 ]
+  }, {
+    "id" : 18,
+    "user_id" : 3,
+    "livre_id" : 3,
+    "date_emprunt" : [ 2025, 1, 23 ],
+    "date_retour" : [ 2025, 2, 7 ]
+  }, {
+    "id" : 19,
+    "user_id" : 5,
+    "livre_id" : 4,
+    "date_emprunt" : [ 2025, 1, 21 ],
+    "date_retour" : [ 2025, 2, 4 ]
+  }, {
+    "id" : 20,
+    "user_id" : 6,
+    "livre_id" : 2,
+    "date_emprunt" : [ 2025, 1, 20 ],
+    "date_retour" : [ 2025, 2, 3 ]
+  }, {
+    "id" : 21,
+    "user_id" : 7,
+    "livre_id" : 1,
+    "date_emprunt" : [ 2025, 1, 18 ],
+    "date_retour" : [ 2025, 2, 1 ]
+  } ],
+  "livres" : [ {
+    "id" : 1,
+    "titre" : "Le Seigneur des Anneaux",
+    "auteur" : "J.R.R. Tolkien",
+    "genre" : "Fantasy",
+    "status" : "disponible"
+  }, {
+    "id" : 4,
+    "titre" : "Dune22",
+    "auteur" : "Ged",
+    "genre" : "Test genre",
+    "status" : "disponible"
+  }, {
+    "id" : 5,
+    "titre" : "Dune",
+    "auteur" : "Frank Herbert",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 6,
+    "titre" : "Le Seigneur des Anneaux",
+    "auteur" : "J.R.R. Tolkien",
+    "genre" : "Fantasy",
+    "status" : "disponible"
+  }, {
+    "id" : 7,
+    "titre" : "Le Trône de Fer",
+    "auteur" : "George R.R. Martin",
+    "genre" : "Fantasy",
+    "status" : "disponible"
+  }, {
+    "id" : 8,
+    "titre" : "Les Misérables",
+    "auteur" : "Victor Hugo",
+    "genre" : "Drame",
+    "status" : "emprunte"
+  }, {
+    "id" : 9,
+    "titre" : "Le Comte de Monte-Cristo",
+    "auteur" : "Alexandre Dumas",
+    "genre" : "Aventure",
+    "status" : "disponible"
+  }, {
+    "id" : 10,
+    "titre" : "Les Trois Mousquetaires",
+    "auteur" : "Alexandre Dumas",
+    "genre" : "Aventure",
+    "status" : "emprunte"
+  }, {
+    "id" : 11,
+    "titre" : "Les Fourmis",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 12,
+    "titre" : "Les Thanatonautes",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 13,
+    "titre" : "Dune",
+    "auteur" : "Frank Herbert",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 14,
+    "titre" : "Le Seigneur des Anneaux",
+    "auteur" : "J.R.R. Tolkien",
+    "genre" : "Fantasy",
+    "status" : "disponible"
+  }, {
+    "id" : 15,
+    "titre" : "Le Trône de Fer",
+    "auteur" : "George R.R. Martin",
+    "genre" : "Fantasy",
+    "status" : "disponible"
+  }, {
+    "id" : 16,
+    "titre" : "Les Misérables",
+    "auteur" : "Victor Hugo",
+    "genre" : "Drame",
+    "status" : "disponible"
+  }, {
+    "id" : 17,
+    "titre" : "Le Comte de Monte-Cristo",
+    "auteur" : "Alexandre Dumas",
+    "genre" : "Aventure",
+    "status" : "disponible"
+  }, {
+    "id" : 18,
+    "titre" : "Les Trois Mousquetaires",
+    "auteur" : "Alexandre Dumas",
+    "genre" : "Aventure",
+    "status" : "disponible"
+  }, {
+    "id" : 19,
+    "titre" : "Les Fourmis",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 20,
+    "titre" : "Les Thanatonautes",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 21,
+    "titre" : "LEmpire des Anges",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 22,
+    "titre" : "La Révolution des Fourmis",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 23,
+    "titre" : "Le Jour des Fourmis",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 24,
+    "titre" : "Le Souffle des Dieux",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 25,
+    "titre" : "Le Papillon des Etoiles",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "emprunte"
+  }, {
+    "id" : 26,
+    "titre" : "Le Rire du Cyclope",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 27,
+    "titre" : "Le Mystère des Dieux",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 28,
+    "titre" : "Le Mystère des Dieux",
+    "auteur" : "Bernard Werber",
+    "genre" : "Science Fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 29,
+    "titre" : "Mon titre",
+    "auteur" : "jd",
+    "genre" : "fiction",
+    "status" : "disponible"
+  }, {
+    "id" : 30,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 31,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 32,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 33,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 34,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 35,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 36,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 37,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 38,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 39,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 40,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 41,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 42,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 43,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 44,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 45,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 46,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 47,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 48,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 49,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 50,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 51,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 52,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 53,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 54,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 55,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 56,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 57,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 58,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 59,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 60,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 61,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 62,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 63,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 64,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 65,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 66,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 67,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 68,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 69,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 70,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 71,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 72,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 73,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 74,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 75,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 76,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 77,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 78,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 79,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 80,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 81,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 82,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 83,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 84,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 85,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 86,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 87,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 88,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 89,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 90,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 91,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 92,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 93,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 94,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 95,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 96,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 97,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 98,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 99,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 100,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 101,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 102,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 103,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 104,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 105,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 106,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 107,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 108,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 109,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 110,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 111,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 112,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 113,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 114,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 115,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 116,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 117,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 118,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 119,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 120,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 121,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 122,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  }, {
+    "id" : 123,
+    "titre" : "Harry Potter à l'école des sorciers",
+    "auteur" : "Fantasy",
+    "genre" : "J.K. Rowling",
+    "status" : "disponible"
+  }, {
+    "id" : 124,
+    "titre" : "1984",
+    "auteur" : "Dystopie",
+    "genre" : "George Orwell",
+    "status" : "disponible"
+  }, {
+    "id" : 125,
+    "titre" : "Les Misérables",
+    "auteur" : "Drame",
+    "genre" : "Victor Hugo",
+    "status" : "emprunte"
+  }, {
+    "id" : 126,
+    "titre" : "Le Petit Prince",
+    "auteur" : "Conte",
+    "genre" : "Antoine de Saint-Exupéry",
+    "status" : "disponible"
+  }, {
+    "id" : 127,
+    "titre" : "La Peste",
+    "auteur" : "Drame",
+    "genre" : "Albert Camus",
+    "status" : "disponible"
+  }, {
+    "id" : 128,
+    "titre" : "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+    "auteur" : "Fantasy",
+    "genre" : "J.R.R. Tolkien",
+    "status" : "disponible"
+  }, {
+    "id" : 129,
+    "titre" : "Fahrenheit 451",
+    "auteur" : "Science-Fiction",
+    "genre" : "Ray Bradbury",
+    "status" : "emprunte"
+  } ]
+}

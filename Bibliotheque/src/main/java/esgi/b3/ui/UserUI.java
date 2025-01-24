@@ -1,6 +1,9 @@
 package esgi.b3.ui;
+import esgi.b3.models.LivreEmprunt;
 import esgi.b3.models.User;
 import esgi.b3.services.UserService;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class UserUI {
@@ -17,6 +20,8 @@ public class UserUI {
         System.out.println("1. Lister les utilisateurs");
         System.out.println("2. Ajouter un utilisateur");
         System.out.println("3. Supprimer un utilisateur");
+        System.out.println("4. Modifier un utilisateur");
+        System.out.println("5. Historique des emprunts");
         System.out.println("0. Retour");
 
         int choix = scanner.nextInt();
@@ -26,6 +31,8 @@ public class UserUI {
             case 1 -> listerUsers();
             case 2 -> ajouterUser();
             case 3 -> supprimerUser();
+            case 4 -> modifierUser();
+            case 5 -> historiqueEmprunts();
             case 0 -> System.out.println("Retour au menu principal");
             default -> System.out.println("Choix invalide.");
         }
@@ -76,6 +83,54 @@ public class UserUI {
             System.out.println("Utilisateur supprimé avec succès.");
         } catch (Exception e) {
             System.out.println("Erreur : " + e.getMessage());
+        }
+    }
+
+    /**
+     * Modifier un utilisateur
+     */
+    private void modifierUser() {
+        System.out.println("Nom de l'utilisateur à modifier : ");
+        String nom = scanner.nextLine();
+        final User user = userService.getUserByName(nom);
+        if (user == null) {
+            System.out.println("Utilisateur non trouvé.");
+            return;
+        }
+        System.out.println("Nouveau nom : ");
+        String newNom = scanner.nextLine();
+        System.out.println("Nouvel email : ");
+        String newEmail = scanner.nextLine();
+        try {
+            userService.updateUser(user, newNom, newEmail);
+            System.out.println("Utilisateur modifié avec succès.");
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
+    }
+
+    /**
+     * Historique des emprunts de l'utilisateur par son nom
+     */
+    private void historiqueEmprunts() {
+        System.out.println("Nom de l'utilisateur : ");
+        String nom = scanner.nextLine();
+
+        try {
+            int id_user = userService.getUserByName(nom).getId();
+            List<LivreEmprunt> emprunts = userService.historiqueEmprunts(id_user);
+
+            if (emprunts.isEmpty()) {
+                System.out.println("Aucun emprunt trouvé pour cet utilisateur.");
+            } else {
+                emprunts.forEach(emprunt ->
+                        System.out.println("Livre : " + emprunt.getTitre() +
+                                " emprunté du " + emprunt.getDateEmprunt() +
+                                " au " + (emprunt.getDateRetour() != null
+                                ? emprunt.getDateRetour() : "Pas encore retourné")));
+            }
+        } catch (Exception e) {
+            System.out.println("Erreurnnn : " + e.getMessage());
         }
     }
 }

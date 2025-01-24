@@ -42,7 +42,7 @@ public class EmpruntService {
         }
 
         int id_user = userDAO.getUserIdByName(nom);
-        int id_livre = livreDAO.getIdLivreId(titre);
+        int id_livre = livreDAO.getLivreId(titre);
 
         // recuperer le livre par son titre
         Livre livre = livreDAO.getLivreById(id_livre);
@@ -64,7 +64,7 @@ public class EmpruntService {
     public void changeStatus(String titre, String emprunte) {
         try {
             final LivreDAO livreDAO = new LivreDAO();
-            int id_livre = livreDAO.getIdLivreId(titre);
+            int id_livre = livreDAO.getLivreId(titre);
             livreDAO.changeStatus(id_livre, emprunte);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -79,10 +79,22 @@ public class EmpruntService {
         try {
             final LivreDAO livreDAO = new LivreDAO();
             final EmpruntDAO empruntDAO = new EmpruntDAO();
-            int id_livre = livreDAO.getIdLivreId(titre);
+            int id_livre = livreDAO.getLivreId(titre);
 
             Emprunt emprunt = empruntDAO.getEmpruntByLivreId(id_livre);
             empruntDAO.rendreLivre(emprunt);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Add a new emprunt
+     * @param emprunt
+     */
+    public void addEmprunt(Emprunt emprunt) {
+        try {
+            empruntDAO.addEmprunt(emprunt);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
