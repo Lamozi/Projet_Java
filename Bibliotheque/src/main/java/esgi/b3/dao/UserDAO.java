@@ -124,7 +124,7 @@ public class UserDAO {
 
     /**
      * Supprimer un utilisateur
-     * @param id id de l'utilisateur
+     * @param user utilisateur
      */
     public void deleteUser(User user) {
         String query = "DELETE FROM users WHERE id = ?";

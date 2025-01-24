@@ -3,6 +3,8 @@ package esgi.b3.ui;
 import esgi.b3.dao.LivreDAO;
 import esgi.b3.dao.UserDAO;
 import esgi.b3.services.EmpruntService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -12,6 +14,8 @@ public class EmpruntUI {
     private final EmpruntService empruntService = new EmpruntService();
     /** Scanner */
     private final Scanner scanner = new Scanner(System.in);
+    // Initialisation du logger
+    private static final Logger logger = LoggerFactory.getLogger(EmpruntUI.class);
 
     /**
      * Afficher le menu des emprunts
@@ -52,7 +56,7 @@ public class EmpruntUI {
                 }
             });
         } catch (Exception e) {
-            System.out.println("Erreur lors de la récupération des emprunts : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des emprunts : ", e);
         }
     }
 
@@ -63,7 +67,6 @@ public class EmpruntUI {
         System.out.println("Nom de l'utilisateur : ");
         String nom = scanner.next();
         System.out.println("Titre du livre : ");
-        // Consommer la saisie de l'utilisateur avec les espaces
         scanner.useDelimiter("\n");
         String titre = scanner.next();
 
@@ -71,9 +74,9 @@ public class EmpruntUI {
             empruntService.emprunterLivre(nom, titre);
             // changer le status du livre à emprunte
             empruntService.changeStatus(titre, "emprunte");
-            System.out.println("Livre emprunté avec succès.");
+            logger.info("Le livre a été emprunté avec succès par l'utilisateur.") ;
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de l'emprunt du livre : ", e);
         }
     }
 
@@ -88,9 +91,9 @@ public class EmpruntUI {
             empruntService.rendreLivre(titre);
             // changer le status du livre à disponible
             empruntService.changeStatus(titre, "disponible");
-            System.out.println("Livre rendu avec succès.");
+            logger.info("Le livre a été rendu avec succès.") ;
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la rendu du livre : ", e);
         }
     }
 }

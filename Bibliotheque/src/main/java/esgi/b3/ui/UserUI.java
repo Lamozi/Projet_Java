@@ -1,7 +1,10 @@
 package esgi.b3.ui;
+import esgi.b3.dao.UserDAO;
 import esgi.b3.models.LivreEmprunt;
 import esgi.b3.models.User;
 import esgi.b3.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +14,8 @@ public class UserUI {
     private final UserService userService = new UserService();
     /** Scanner */
     private final Scanner scanner = new Scanner(System.in);
+    // Initialisation du logger
+    private static final Logger logger = LoggerFactory.getLogger(UserUI.class);
 
     /**
      * Afficher le menu des utilisateurs
@@ -46,7 +51,7 @@ public class UserUI {
             userService.getUsers().forEach(user ->
                     System.out.println(user.getId() + " - " + user.getNom() + " (" + user.getEmail() + ")"));
         } catch (Exception e) {
-            System.out.println("Erreur lors de la récupération des utilisateurs : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des utilisateurs : ", e);
         }
     }
 
@@ -61,9 +66,9 @@ public class UserUI {
 
         try {
             userService.addUser(nom, email);
-            System.out.println("Utilisateur ajouté avec succès.");
+            logger.info("L'utilisateur a été ajouté avec succès.");
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de l'ajout de l'utilisateur : ", e);
         }
     }
 
@@ -75,14 +80,14 @@ public class UserUI {
         String nom = scanner.nextLine();
         final User user = userService.getUserByName(nom);
         if (user == null) {
-            System.out.println("Utilisateur non trouvé.");
+            logger.error("Utilisateur non trouvé.");
             return;
         }
         try {
             userService.deleteUser(user);
-            System.out.println("Utilisateur supprimé avec succès.");
+            logger.info("L'utilisateur a été supprimé avec succès.");
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la suppression de l'utilisateur : ", e);
         }
     }
 
@@ -103,9 +108,9 @@ public class UserUI {
         String newEmail = scanner.nextLine();
         try {
             userService.updateUser(user, newNom, newEmail);
-            System.out.println("Utilisateur modifié avec succès.");
+            logger.info("L'utilisateur a été modifié avec succès.");
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la modification de l'utilisateur : ", e);
         }
     }
 
@@ -121,7 +126,7 @@ public class UserUI {
             List<LivreEmprunt> emprunts = userService.historiqueEmprunts(id_user);
 
             if (emprunts.isEmpty()) {
-                System.out.println("Aucun emprunt trouvé pour cet utilisateur.");
+                logger.warn("Aucun emprunt trouvé pour l'utilisateur.");
             } else {
                 emprunts.forEach(emprunt ->
                         System.out.println("Livre : " + emprunt.getTitre() +
@@ -130,7 +135,7 @@ public class UserUI {
                                 ? emprunt.getDateRetour() : "Pas encore retourné")));
             }
         } catch (Exception e) {
-            System.out.println("Erreurnnn : " + e.getMessage());
+            logger.error("Erreur lors de la récupération de l'historique des emprunts : ", e);
         }
     }
 }

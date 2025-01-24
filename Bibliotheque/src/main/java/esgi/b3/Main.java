@@ -1,9 +1,13 @@
 package esgi.b3;
+import esgi.b3.dao.UserDAO;
 import esgi.b3.exports.ExportEnJson;
 import esgi.b3.exports.ImportJson;
 import esgi.b3.ui.EmpruntUI;
 import esgi.b3.ui.LivreUI;
 import esgi.b3.ui.UserUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +15,10 @@ public class Main {
      * Main
      * @param args arguments
      */
+
+    // Initialisation du logger
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         LivreUI livreUI = new LivreUI();
@@ -44,7 +52,7 @@ public class Main {
                     System.out.println("Au revoir !");
                     System.exit(0);
                 }
-                default -> System.out.println("Choix invalide.");
+                default -> logger.error("Choix invalide.");
             }
         }
     }

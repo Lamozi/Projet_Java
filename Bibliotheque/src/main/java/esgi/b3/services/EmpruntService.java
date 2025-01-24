@@ -5,12 +5,18 @@ import esgi.b3.dao.LivreDAO;
 import esgi.b3.dao.UserDAO;
 import esgi.b3.models.Emprunt;
 import esgi.b3.models.Livre;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class EmpruntService {
+
+    // Logger pour la classe
+    private static final Logger logger = LoggerFactory.getLogger(EmpruntService.class);
+
     /** EmpruntDAO */
     private final EmpruntDAO empruntDAO = new EmpruntDAO();
 
@@ -28,32 +34,32 @@ public class EmpruntService {
      * @param titre titre du livre
      */
     public void emprunterLivre(String nom, String titre) throws SQLException {
+
         if (nom == null || nom.isEmpty() || titre == null || titre.isEmpty()) {
+            logger.error("Nom ou titre manquant. Nom: '{}', Titre: '{}'", nom, titre);
             throw new IllegalArgumentException("Nom et titre sont obligatoires.");
         }
         final UserDAO userDAO = new UserDAO();
         final LivreDAO livreDAO = new LivreDAO();
 
-        if (!userDAO.existsByName(nom)) {
+        if (!userDAO.existsByName(nom) || !livreDAO.existsByTitre(titre)) {
+            logger.error("L'utilisateur '{}' n'existe pas.", nom);
             throw new IllegalArgumentException("L'utilisateur n'existe pas.");
-        }
-        if (!livreDAO.existsByTitle(titre)) {
-            throw new IllegalArgumentException("Le livre n'existe pas.");
         }
 
         int id_user = userDAO.getUserIdByName(nom);
         int id_livre = livreDAO.getLivreId(titre);
-
-        // recuperer le livre par son titre
         Livre livre = livreDAO.getLivreById(id_livre);
 
-        // verifier si le livre est disponible
+        // Vérifier si le livre est disponible
         if (!livreDAO.isAvailable(livre)) {
+            logger.error("Le livre '{}' n'est pas disponible.", titre);
             throw new IllegalArgumentException("Le livre n'est pas disponible.");
         }
 
         Emprunt newEmprunt = new Emprunt(0, id_livre, id_user, LocalDate.now(), LocalDate.now().plusDays(15));
         empruntDAO.addEmprunt(newEmprunt);
+        logger.info("Le livre '{}' a été emprunté avec succès par l'utilisateur '{}'.", titre, nom);
     }
 
     /**
@@ -66,7 +72,9 @@ public class EmpruntService {
             final LivreDAO livreDAO = new LivreDAO();
             int id_livre = livreDAO.getLivreId(titre);
             livreDAO.changeStatus(id_livre, emprunte);
+            logger.info("Le statut du livre '{}' a été mis à jour avec succès.", titre);
         } catch (SQLException e) {
+            logger.error("Erreur lors du changement de statut du livre '{}'.", titre, e);
             throw new RuntimeException(e);
         }
     }
@@ -83,19 +91,24 @@ public class EmpruntService {
 
             Emprunt emprunt = empruntDAO.getEmpruntByLivreId(id_livre);
             empruntDAO.rendreLivre(emprunt);
+
+            logger.info("Le livre '{}' a été retourné avec succès.", titre);
         } catch (SQLException e) {
+            logger.error("Erreur lors du retour du livre '{}'.", titre, e);
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * Add a new emprunt
+     * Ajouter un nouvel emprunt
      * @param emprunt
      */
     public void addEmprunt(Emprunt emprunt) {
         try {
             empruntDAO.addEmprunt(emprunt);
+            logger.info("L'emprunt a été ajouté avec succès.");
         } catch (SQLException e) {
+            logger.error("Erreur lors de l'ajout de l'emprunt.", e);
             throw new RuntimeException(e);
         }
     }

@@ -1,7 +1,11 @@
 package esgi.b3.ui;
 import esgi.b3.dao.LivreDAO;
+import esgi.b3.dao.UserDAO;
 import esgi.b3.models.Livre;
 import esgi.b3.services.LivreService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -10,6 +14,8 @@ public class LivreUI {
     private final LivreService livreService = new LivreService();
     /** Scanner */
     private final Scanner scanner = new Scanner(System.in);
+    // Initialisation du logger
+    private static final Logger logger = LoggerFactory.getLogger(LivreUI.class);
 
     /**
      * Afficher le menu des livres
@@ -53,7 +59,7 @@ public class LivreUI {
             livreService.getLivresDisponible().forEach(livre ->
                     System.out.println(livre.getId() + " - " + livre.getTitre() + " par " + livre.getAuteur() + " - " + livre.getStatus()) );
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération des livres : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des livres : ", e);
         }
     }
 
@@ -65,7 +71,7 @@ public class LivreUI {
             livreService.getLivresEmprunte().forEach(livre ->
                     System.out.println(livre.getId() + " - " + livre.getTitre() + " par " + livre.getAuteur() + " - " + livre.getStatus()));
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération des livres : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des livres : ", e);
         }
     }
 
@@ -77,7 +83,7 @@ public class LivreUI {
             livreService.getLivres().forEach(livre ->
                     System.out.println(livre.getId() + " - " + livre.getTitre() + " par " + livre.getAuteur() + " - " + livre.getStatus()) );
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération des livres : " + e.getMessage());
+            logger.error("Erreur lors de la récupération des livres : ", e);
         }
     }
 
@@ -94,9 +100,9 @@ public class LivreUI {
 
         try {
             livreService.ajouterLivre(titre, auteur, genre, "disponible"); // le livre est disponible par défaut à l'ajout
-            System.out.println("Livre ajouté avec succès.");
+            logger.info("Le livre a été ajouté avec succès.");
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de l'ajout du livre : ", e);
         }
     }
 
@@ -120,9 +126,9 @@ public class LivreUI {
             String newStatus = scanner.nextLine();
 
             livreService.modifierLivre(new Livre(id_livre, newTitre, newAuteur, newGenre, newStatus));
-            System.out.println("Livre modifié avec succès.");
+            logger.info("Le livre a été modifié avec succès.");
         } catch (SQLException e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la modification du livre : ", e);
         }
     }
 
@@ -137,9 +143,9 @@ public class LivreUI {
             int id_livre = livreDAO.getLivreId(titre);
 
             livreService.supprimerLivre(id_livre);
-            System.out.println("Livre supprimé avec succès.");
+            logger.info("Le livre a été supprimé avec succès.");
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la suppression du livre : ", e);
         }
     }
 
@@ -153,7 +159,7 @@ public class LivreUI {
             Livre livre = livreService.rechercherLivreByTitre(titre);
             System.out.println(" ID : " + livre.getId() + " - Titre " + livre.getTitre() + " Auteur : " + livre.getAuteur() + " - Genre : " + livre.getGenre() + " - Status : " + livre.getStatus());
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la recherche du livre : ", e);
         }
     }
 
@@ -167,7 +173,7 @@ public class LivreUI {
             livreService.rechercherLivreByAuteur(auteur).forEach(livre ->
                     System.out.println(" ID : " + livre.getId() + " - Titre " + livre.getTitre() + " Auteur : " + livre.getAuteur() + " - Genre : " + livre.getGenre() + " - Status : " + livre.getStatus()));
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la recherche du livre : ", e);
         }
     }
 
@@ -181,7 +187,7 @@ public class LivreUI {
             livreService.rechercherLivreByGenre(genre).forEach(livre ->
                     System.out.println(" ID : " + livre.getId() + " - Titre " + livre.getTitre() + " Auteur : " + livre.getAuteur() + " - Genre : " + livre.getGenre() + " - Status : " + livre.getStatus()));
         } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+            logger.error("Erreur lors de la recherche du livre : ", e);
         }
     }
 }
